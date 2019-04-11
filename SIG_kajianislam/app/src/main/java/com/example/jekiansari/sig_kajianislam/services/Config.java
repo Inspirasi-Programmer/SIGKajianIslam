@@ -3,8 +3,8 @@ package com.example.jekiansari.sig_kajianislam.services;
 public class Config {
     //location server
 
-    public static final String SERVER = "http://192.168.1.5/";
-    public static final String URL_SERVER = "http://192.168.100.87/SIGKajianIslam2/MobileKajianIslam/"; //untuk nanti seminar
+    public static final String URL_SERVER = "http://192.168.43.240/SIGKajianIslam2/MobileKajianIslam/"; // jangan di ganti ip hape pake kuota wkwkkw
+//    public static final String URL_SERVER = "http://192.168.100.87/SIGKajianIslam2/MobileKajianIslam/"; //untuk nanti seminar
 //    public static final String URL_SERVER = "http://192.168.1.10/MapsBencanaFinal/MapsBencanaMobile/"; //dirumah
 //public static final String URL_SERVER = "http://10.140.0.228/MapsBencanaFinal/MapsBencanaMobile/"; //dikampus
 //    public static final String URL_SERVER = "http://sambalbasi.000webhostapp.com/mobile/";
@@ -14,7 +14,7 @@ public class Config {
     public static final String PATH_BUKTI = "img/bukti/";
 
     //    public static final String URL_ADD = URL_SERVER + "TambahBencana.php";
-    public static final String URL_MAPS = URL_SERVER + "services/";
+    public static final String URL_MAPS = URL_SERVER;
     public static final String URL_ADD_KAJIAN = URL_SERVER + "TambahKajian.php";
     public static final String URL_EDIT = URL_SERVER + "util/EditBencana.php";
     public static final String URL_HAPUS = URL_SERVER + "util/HapusBencana.php";

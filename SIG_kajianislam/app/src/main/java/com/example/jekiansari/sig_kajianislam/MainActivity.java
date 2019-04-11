@@ -1,5 +1,6 @@
 package com.example.jekiansari.sig_kajianislam;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,17 +13,32 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.jekiansari.sig_kajianislam.Model.ListLocationModel;
+import com.example.jekiansari.sig_kajianislam.Model.LocationModel;
+import com.example.jekiansari.sig_kajianislam.services.ApiClient;
+import com.example.jekiansari.sig_kajianislam.services.ApiService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    String warnaRAW = "";
+    private List<LocationModel> mListMarker = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        String username = pref.getString("username",null);
 //        TextUsername.setText("Hello, "+pref.getString("username",null));
 //        Log.e("username",username);
+        Toast.makeText(this,"Silahkan Login Untuk Menambah Bencana",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -81,20 +98,130 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             finish();
             return true;
         }else if (id == R.id.refresh){
-
+            getAllDataLocationLatLng();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//        mMap = googleMap;
+//
+//        // Add a marker in Sydney, Australia, and move the camera.
+//        LatLng sydney = new LatLng(-34, 151);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                warnaRAW = marker.getSnippet().toString();
+                String id = marker.getTitle().toString();
+                String loc = marker.getSnippet().toString();
+                String authorRAW = marker.getSnippet().toString();
 
-        // Add a marker in Sydney, Australia, and move the camera.
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                String username ="username";
+
+                // yg buat bencana
+                String authorFinal = authorRAW.substring(authorRAW.lastIndexOf("[")+1, authorRAW.indexOf("]"));
+                Log.e("regex", authorFinal);
+
+                if (username.equals(authorFinal)){
+                    Log.e("test","cakep");
+                    Intent i = new Intent(MainActivity.this,MainActivity.class);
+
+                    i.putExtra("loc",loc);
+                    i.putExtra("Value",id);
+                    startActivity(i);
+                    Log.i("-nya",id);
+                }else {
+                    Log.e("test","bosok");
+                    Intent i = new Intent(MainActivity.this,MainActivity.class);
+
+                    i.putExtra("loc",loc);
+                    i.putExtra("Value",id);
+                    startActivity(i);
+
+                    Log.i("-nya",id);
+                }
+
+//                Intent i = new Intent(MapsActivity.this,NewDetailActivity.class);
+////                i.putExtra("idBencana",id);
+//                i.putExtra("loc",loc);
+//                i.putExtra("Value",id);
+//                startActivity(i);
+////                String b = marker.getTitle().toString();
+//                Log.i("-nya",id);
+                return false;
+            }
+        });
+
+        getAllDataLocationLatLng();
+
+    }
+
+    /**
+     * method ini digunakan menampilkan data marker dari database
+     */
+    private void getAllDataLocationLatLng(){
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("Menampilkan data marker ..");
+        dialog.show();
+
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        Call<ListLocationModel> call = apiService.getAllLocation();
+        call.enqueue(new Callback<ListLocationModel>() {
+            @Override
+            public void onResponse(Call<ListLocationModel> call, Response<ListLocationModel> response) {
+                dialog.dismiss();
+                mListMarker = response.body().getmData();
+                initMarker(mListMarker);
+            }
+
+            @Override
+            public void onFailure(Call<ListLocationModel> call, Throwable t) {
+                dialog.dismiss();
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+    /**
+     * Method ini digunakan untuk menampilkan semua marker di maps dari data yang didapat dari database
+     * @param listData
+     */
+    private void initMarker(List<LocationModel> listData ){
+        //iterasi semua data dan tampilkan markernya
+        for (int i=0; i<mListMarker.size(); i++){
+            //set latlng nya
+            LatLng location = new LatLng(Double.parseDouble(mListMarker.get(i).getLatitude()), Double.parseDouble(mListMarker.get(i).getLongitude()));
+            //tambahkan markernya
+//            mMap.addMarker(new MarkerOptions().position(location).title(mListMarker.get(i).getImageLocationName()).snippet(mListMarker.get(i).getImageLocationName()));
+            mMap.addMarker(new MarkerOptions().position(location).title(mListMarker.get(i).getIdkajian()).snippet("("+mListMarker.get(i).getNamakajian()+")"+" ["+mListMarker.get(i).getUsername()+"]"));
+            //set latlng index ke 0
+            LatLng latLng = new LatLng(Double.parseDouble(mListMarker.get(0).getLatitude()), Double.parseDouble(mListMarker.get(0).getLongitude()));
+            //lalu arahkan zooming ke marker index ke 0
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 13.5f));
+
+//            extraMarkerInfo.put(marker.getTitle(),);
+        }
+
+    }
+
+    // back butonn
+    @Override
+    public void onBackPressed(){
+        // disable back button
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
     }
 }

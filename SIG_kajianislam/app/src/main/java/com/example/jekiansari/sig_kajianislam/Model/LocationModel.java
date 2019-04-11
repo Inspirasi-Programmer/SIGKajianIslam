@@ -12,7 +12,7 @@ public class LocationModel {
     @SerializedName("username")
     private String username;
 
-    public LocationModel(String idkajian, String namakajian, String latutide, String longitude, String username) {
+    public LocationModel(String idkajian, String namakajian, String latitude, String longitude, String username) {
         this.idkajian = idkajian;
         this.namakajian = namakajian;
         this.latitude = latitude;
