@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,7 @@ import retrofit2.Response;
 public class MyKajianActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    String gUser;
     String warnaRAW = "";
     private List<LocationModel> mListMarker = new ArrayList<>();
 
@@ -55,6 +57,7 @@ public class MyKajianActivity extends AppCompatActivity implements OnMapReadyCal
         SharedPreferences pref = getSharedPreferences("SP_USER",MODE_PRIVATE);
         TextView TextUsername = (TextView)findViewById(R.id.username);
         String username = pref.getString("username",null);
+        gUser = username;
         TextUsername.setText("Hello, "+pref.getString("username",null));
         Log.e("username",username);
     }
@@ -176,7 +179,8 @@ public class MyKajianActivity extends AppCompatActivity implements OnMapReadyCal
         dialog.show();
 
         ApiMyKajian apiKajian = ApiClient.getClient().create(ApiMyKajian.class);
-        Call<ListLocationModel> call = apiKajian.getAllLocation();
+        Call<ListLocationModel> call = apiKajian.getAllLocation(gUser);
+        Log.e("Throw Url = ",call.toString());
         call.enqueue(new Callback<ListLocationModel>() {
             @Override
             public void onResponse(Call<ListLocationModel> call, Response<ListLocationModel> response) {
