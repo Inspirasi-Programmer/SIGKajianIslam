@@ -82,6 +82,11 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
         }else if (id == R.id.Cari){
             return true;
         }
+        else if (id == R.id.kajianumum){
+            Intent intent = new Intent(MainUserActivity.this, MainUserActivity.class);
+            startActivity(intent);
+            return true;
+        }
         else if (id == R.id.Mykajian){
             Intent intent = new Intent(MainUserActivity.this, MyKajianActivity.class);
             startActivity(intent);

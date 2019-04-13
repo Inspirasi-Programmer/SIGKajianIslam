@@ -9,6 +9,7 @@
     <string name="refresh">Refresh</string>
     <string name="logout">Logout</string>
     <string name="kajiansaya">Kajian Saya</string>
+    <string name="kajianumum">Seluruh Kajian</string>
     <string name="API_KEY">AIzaSyDK2ksq_XQf8mm37wyFwltNQvSqKdUKWDM
 </string>
     <string-array name="bencana">

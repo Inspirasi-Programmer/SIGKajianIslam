@@ -9,6 +9,12 @@
         android:title="@string/tambahkajian"
         app:showAsAction="never" />
     <item
+        android:id="@+id/kajianumum"
+        android:orderInCategory="100"
+        android:title="@string/kajianumum"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/Mykajian"
         android:orderInCategory="100"
         android:title="@string/kajiansaya"

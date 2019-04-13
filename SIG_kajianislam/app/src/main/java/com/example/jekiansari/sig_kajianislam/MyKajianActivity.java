@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.jekiansari.sig_kajianislam.Model.ListLocationModel;
 import com.example.jekiansari.sig_kajianislam.Model.LocationModel;
 import com.example.jekiansari.sig_kajianislam.services.ApiClient;
+import com.example.jekiansari.sig_kajianislam.services.ApiMyKajian;
 import com.example.jekiansari.sig_kajianislam.services.ApiService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -78,6 +79,11 @@ public class MyKajianActivity extends AppCompatActivity implements OnMapReadyCal
             startActivity(intent);
             return true;
         }else if (id == R.id.Cari){
+            return true;
+        }
+        else if (id == R.id.kajianumum){
+            Intent intent = new Intent(MyKajianActivity.this, MainUserActivity.class);
+            startActivity(intent);
             return true;
         }
         else if (id == R.id.Mykajian){
@@ -169,8 +175,8 @@ public class MyKajianActivity extends AppCompatActivity implements OnMapReadyCal
         dialog.setMessage("Menampilkan data marker ..");
         dialog.show();
 
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        Call<ListLocationModel> call = apiService.getAllLocation();
+        ApiMyKajian apiKajian = ApiClient.getClient().create(ApiMyKajian.class);
+        Call<ListLocationModel> call = apiKajian.getAllLocation();
         call.enqueue(new Callback<ListLocationModel>() {
             @Override
             public void onResponse(Call<ListLocationModel> call, Response<ListLocationModel> response) {
