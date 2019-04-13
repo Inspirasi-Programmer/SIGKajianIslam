@@ -3,7 +3,7 @@ package com.example.jekiansari.sig_kajianislam.services;
 public class Config {
     //location server
 
-    public static final String URL_SERVER = "http://192.168.43.240/SIGKajianIslam2/MobileKajianIslam/"; // jangan di ganti ip hape pake kuota wkwkkw
+    public static final String URL_SERVER = "http://192.168.1.4/SIGKajianIslam2/MobileKajianIslam/"; // jangan di ganti ip hape pake kuota wkwkkw
 //    public static final String URL_SERVER = "http://192.168.100.87/SIGKajianIslam2/MobileKajianIslam/"; //untuk nanti seminar
 //    public static final String URL_SERVER = "http://192.168.1.10/MapsBencanaFinal/MapsBencanaMobile/"; //dirumah
 //public static final String URL_SERVER = "http://10.140.0.228/MapsBencanaFinal/MapsBencanaMobile/"; //dikampus

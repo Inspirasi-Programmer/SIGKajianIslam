@@ -1,7 +1,6 @@
 package com.example.jekiansari.sig_kajianislam;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,14 +25,13 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainUserActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MyKajianActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     String warnaRAW = "";
@@ -43,7 +41,7 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mainuser);
+        setContentView(R.layout.activity_mykajian);
 
         //manggil di atas header / butom 3
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -76,14 +74,14 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.Tambahkajian) {
-            Intent intent = new Intent(MainUserActivity.this, MapsTambahActivity.class);
+            Intent intent = new Intent(MyKajianActivity.this, MapsTambahActivity.class);
             startActivity(intent);
             return true;
         }else if (id == R.id.Cari){
             return true;
         }
         else if (id == R.id.Mykajian){
-            Intent intent = new Intent(MainUserActivity.this, MyKajianActivity.class);
+            Intent intent = new Intent(MyKajianActivity.this, MyKajianActivity.class);
             startActivity(intent);
             return true;
         }
@@ -93,10 +91,10 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
 ////            return true;
 ////        }
         else if (id == R.id.Logout){
-           SharedPreferences pref = getSharedPreferences("SP_USER",MODE_PRIVATE);
+            SharedPreferences pref = getSharedPreferences("SP_USER",MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();
 
-            Intent intent = new Intent(MainUserActivity.this, MainActivity.class);
+            Intent intent = new Intent(MyKajianActivity.this, MainActivity.class);
             editor.clear();
             editor.commit();
             startActivity(intent);
@@ -131,7 +129,7 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
 
                 if (username.equals(authorFinal)){
                     Log.e("test","cakep");
-                    Intent i = new Intent(MainUserActivity.this,MainUserActivity.class);
+                    Intent i = new Intent(MyKajianActivity.this,MyKajianActivity.class);
 
                     i.putExtra("loc",loc);
                     i.putExtra("Value",id);
@@ -139,7 +137,7 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
                     Log.i("-nya",id);
                 }else {
                     Log.e("test","bosok");
-                    Intent i = new Intent(MainUserActivity.this,MainUserActivity.class);
+                    Intent i = new Intent(MyKajianActivity.this,MyKajianActivity.class);
 
                     i.putExtra("loc",loc);
                     i.putExtra("Value",id);
@@ -184,7 +182,7 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onFailure(Call<ListLocationModel> call, Throwable t) {
                 dialog.dismiss();
-                Toast.makeText(MainUserActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyKajianActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
