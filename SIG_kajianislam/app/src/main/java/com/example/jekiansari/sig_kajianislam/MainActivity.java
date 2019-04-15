@@ -135,21 +135,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 if (username.equals(authorFinal)){
                     Log.e("test","cakep");
-                    Intent i = new Intent(MainActivity.this,MainActivity.class);
+                    Intent i = new Intent(MainActivity.this,DetailPublicActivity.class);
 
                     i.putExtra("loc",loc);
                     i.putExtra("Value",id);
                     startActivity(i);
                     Log.i("-nya",id);
-                }else {
-                    Log.e("test","bosok");
-                    Intent i = new Intent(MainActivity.this,MainActivity.class);
-
-                    i.putExtra("loc",loc);
-                    i.putExtra("Value",id);
-                    startActivity(i);
-
-                    Log.i("-nya",id);
+//                }else {
+//                    Log.e("test","bosok");
+//                    Intent i = new Intent(MainActivity.this,MainActivity.class);
+//
+//                    i.putExtra("loc",loc);
+//                    i.putExtra("Value",id);
+//                    startActivity(i);
+//
+//                    Log.i("-nya",id);
                 }
 
 //                Intent i = new Intent(MapsActivity.this,NewDetailActivity.class);

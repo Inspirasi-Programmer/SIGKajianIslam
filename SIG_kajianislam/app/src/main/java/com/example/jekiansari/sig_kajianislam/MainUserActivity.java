@@ -136,7 +136,7 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
 
                 if (username.equals(authorFinal)){
                     Log.e("test","cakep");
-                    Intent i = new Intent(MainUserActivity.this,MainUserActivity.class);
+                    Intent i = new Intent(MainUserActivity.this,DetailPublicActivity.class);
 
                     i.putExtra("loc",loc);
                     i.putExtra("Value",id);

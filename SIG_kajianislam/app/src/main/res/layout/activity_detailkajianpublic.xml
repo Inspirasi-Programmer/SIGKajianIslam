@@ -30,13 +30,28 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/posisidetailpublic"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:id="@+id/urlgambarposter"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Gambar Poster"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/gambarposterdetailpublic" />
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:id="@+id/urlgambartempat"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -382,7 +397,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Informasi"
-                android:id="@+id/keterangandetail"
+                android:id="@+id/informasidetailpublic"
                 android:layout_below="@id/ketdetail"
                 android:textAlignment="center"
                 android:layout_marginLeft="5dp"
