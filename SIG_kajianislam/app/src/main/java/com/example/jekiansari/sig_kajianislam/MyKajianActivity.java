@@ -212,7 +212,7 @@ public class MyKajianActivity extends AppCompatActivity implements OnMapReadyCal
 //            mMap.addMarker(new MarkerOptions().position(location).title(mListMarker.get(i).getImageLocationName()).snippet(mListMarker.get(i).getImageLocationName()));
             mMap.addMarker(new MarkerOptions().position(location).title(mListMarker.get(i).getIdkajian()).snippet("("+mListMarker.get(i).getNamakajian()+")"+" ["+mListMarker.get(i).getUsername()+"]"));
             //set latlng index ke 0
-            LatLng latLng = new LatLng(Double.parseDouble(mListMarker.get(0).getLatitude()), Double.parseDouble(mListMarker.get(0).getLongitude()));
+            LatLng latLng = new LatLng(Double.parseDouble(mListMarker.get(i).getLatitude()), Double.parseDouble(mListMarker.get(i).getLongitude()));
             //lalu arahkan zooming ke marker index ke 0
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latLng.latitude,latLng.longitude), 13.5f));
 
