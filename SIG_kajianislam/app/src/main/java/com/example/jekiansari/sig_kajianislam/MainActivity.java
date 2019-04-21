@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        String username = pref.getString("username",null);
 //        TextUsername.setText("Hello, "+pref.getString("username",null));
 //        Log.e("username",username);
-        Toast.makeText(this,"Silahkan Login Untuk Menambah Bencana",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Silahkan Login Untuk Menambah Kajian",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -122,35 +122,38 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                warnaRAW = marker.getSnippet().toString();
-                String id = marker.getTitle().toString();
-                String loc = marker.getSnippet().toString();
-                String authorRAW = marker.getSnippet().toString();
-
-                String username ="username";
-
-                // yg buat bencana
-                String authorFinal = authorRAW.substring(authorRAW.lastIndexOf("[")+1, authorRAW.indexOf("]"));
-                Log.e("regex", authorFinal);
-
-                if (username.equals(authorFinal)){
-                    Log.e("test","cakep");
-                    Intent i = new Intent(MainActivity.this,MainActivity.class);
-
-                    i.putExtra("loc",loc);
-                    i.putExtra("Value",id);
-                    startActivity(i);
-                    Log.i("-nya",id);
-                }else {
-                    Log.e("test","bosok");
-                    Intent i = new Intent(MainActivity.this,MainActivity.class);
-
-                    i.putExtra("loc",loc);
-                    i.putExtra("Value",id);
-                    startActivity(i);
-
-                    Log.i("-nya",id);
-                }
+                Intent i = new Intent(MainActivity.this,DetailPublicActivity.class);
+                i.putExtra("id_kajian",marker.getTitle().toString());
+                startActivity(i);
+//                warnaRAW = marker.getSnippet().toString();
+//                String id = marker.getTitle().toString();
+//                String loc = marker.getSnippet().toString();
+//                String authorRAW = marker.getSnippet().toString();
+//
+//                String username ="username";
+//
+//                // yg buat bencana
+//                String authorFinal = authorRAW.substring(authorRAW.lastIndexOf("[")+1, authorRAW.indexOf("]"));
+//                Log.e("regex", authorFinal);
+//
+//                if (username.equals(authorFinal)){
+//                    Log.e("test","cakep");
+//                    Intent i = new Intent(MainActivity.this,DetailPublicActivity.class);
+//
+//                    i.putExtra("loc",loc);
+//                    i.putExtra("Value",id);
+//                    startActivity(i);
+//                    Log.i("-nya",id);
+//                }else {
+//                    Log.e("test","bosok");
+//                    Intent i = new Intent(MainActivity.this,MainActivity.class);
+//
+//                    i.putExtra("loc",loc);
+//                    i.putExtra("Value",id);
+//                    startActivity(i);
+//
+//                    Log.i("-nya",id);
+//                }
 
 //                Intent i = new Intent(MapsActivity.this,NewDetailActivity.class);
 ////                i.putExtra("idBencana",id);

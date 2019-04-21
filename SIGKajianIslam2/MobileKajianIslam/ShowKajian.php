@@ -1,21 +1,10 @@
-<?php 
+<?php
 include("../settings/koneksi.php");
-<<<<<<< HEAD
-if(isset($_GET["nama_user"]))
-=======
-if(isset($_POST["nama_user"]))
->>>>>>> Commit - 5 Marker Detail Masih Tidak Bisa
-{
-	class JsonDisplayMarker {
+ 
 
-		function getMarkers(){
+ class JsonDisplayMarker {
+    function getMarkers(){
         //buat koneksinya
-<<<<<<< HEAD
-        $username = $_GET["nama_user"];
-=======
-        $username = $_POST["nama_user"];
->>>>>>> Commit - 5 Marker Detail Masih Tidak Bisa
-        $aktif = 'aktif';
         $connection = new Connection();
         $conn = $connection->getConnection();
 
@@ -27,8 +16,7 @@ if(isset($_POST["nama_user"]))
 
         try{
             //tampilkan semua data dari mysql
-            // $queryMarker = "SELECT * FROM bencana where status='$aktif'";
-            $queryMarker = "SELECT formkajian.id_kajian, formkajian.namakajian, formkajian.lat, formkajian.lng, username.username FROM formkajian INNER JOIN username ON formkajian.id_username = username.id_username WHERE username.username='$username' && formkajian.statuskajian='aktif'";
+            $queryMarker = "SELECT * FROM formkajian where id_kajian=".htmlspecialchars($_GET["id_kajian"]) ;
             $getData = $conn->prepare($queryMarker);
             $getData->execute();
 
@@ -39,9 +27,24 @@ if(isset($_POST["nama_user"]))
                     array(
                         'id_kajian'=>$data['id_kajian'],
                         'namakajian'=>$data['namakajian'],
-                        'latitude'=>$data['lat'],
-                        'longitude'=>$data['lng'],
-                        'username' =>$data['username'])
+                        'namapemateri'=>$data['namapemateri'],
+                        'namatempat'=>$data['namatempat'],
+                        'lat'=>$data['lat'],
+                    	'lng'=>$data['lng'],
+                    	'alamat'=>$data['alamat'],
+                    	'kelurahan'=>$data['kelurahan'],
+                    	'kecamatan'=>$data['kecamatan'],
+                    	'tanggalkajian'=>$data['tanggalkajian'],
+                    	'waktumulai'=>$data['waktumulai'],
+                    	'waktuselesai'=>$data['waktuselesai'],
+                    	'kuota'=>$data['kuota'],
+                    	'statuspeserta'=>$data['statuspeserta'],
+                    	'statusberbayar'=>$data['statusberbayar'],
+                    	'pengelola'=>$data['Pengelola'],
+                    	'kontakpengelola'=>$data['kontakpengelola'],
+                    	'informasi'=>$data['informasi'],
+                    	'gambarposter'=>$data['fotoposter'],
+                    	'gambartempat'=>$data['fototempat'])
                     );
             }
         }catch (PDOException $e){
@@ -57,13 +60,15 @@ if(isset($_POST["nama_user"]))
             echo json_encode(
                 array("data"=>$response,$code=>0,$message=>"Failed displaying data")
             );
-        }}
+        }
+
+
     }
+}
 
 $location = new JsonDisplayMarker();
 $location->getMarkers();
 
-}
 class Connection {
     function getConnection(){
         $host       = HOST;

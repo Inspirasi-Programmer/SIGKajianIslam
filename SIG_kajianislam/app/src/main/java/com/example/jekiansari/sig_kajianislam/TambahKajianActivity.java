@@ -144,7 +144,7 @@ public class TambahKajianActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                day = day + 1;
+                day = day;
                 String monthConverted = ""+month;
                 String dayConverted = ""+day;
                 if(month<10 && day <10){

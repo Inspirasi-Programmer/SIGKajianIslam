@@ -2,8 +2,8 @@ package com.example.jekiansari.sig_kajianislam.services;
 
 public class Config {
     //location server
-
-    public static final String URL_SERVER = "http://192.168.43.240/SIGKajianIslam2/MobileKajianIslam/";
+    public static final String URL_GAMBAR = "http://192.168.1.72/SIGKajianIslam2/";
+    public static final String URL_SERVER = "http://192.168.1.72/SIGKajianIslam2/MobileKajianIslam/";
     // plis jangan d ganti kalo mau d commen aja malas aku bukka cmd berat
 
 //    public static final String URL_SERVER = "http://192.168.100.87/SIGKajianIslam2/MobileKajianIslam/"; //untuk nanti seminar
@@ -21,7 +21,7 @@ public class Config {
     public static final String URL_EDIT = URL_SERVER + "util/EditBencana.php";
     public static final String URL_HAPUS = URL_SERVER + "util/HapusBencana.php";
     public static final String URL_ADD_USER = URL_SERVER + "TambahUser.php";
-    public static final String URL_SHOW_DETAIL_BENCANA = URL_SERVER + "services/ShowBencana.php?id_bencana=";
+    public static final String URL_SHOW_DETAIL_KAJIAN = URL_SERVER + "ShowKajian.php?id_kajian=";
     public static final String URL_SHOW_ID_BENCANA = URL_SERVER + "services/IdBencana.php";
     public static final String EEK ="http://192.168.1.6/MapBencana/services/ShowBencana.php?id_bencana=";
     //    public static final String URL_SHOW_DETAIL_TEST_BENCANA = URL_SERVER + "services/ShowBencana.php?id_bencana=115";
