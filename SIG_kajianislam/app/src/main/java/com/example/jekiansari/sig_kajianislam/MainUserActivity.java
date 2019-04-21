@@ -123,6 +123,7 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+<<<<<<< HEAD
                 Intent i = new Intent(MainUserActivity.this,DetailPublicActivity.class);
                 i.putExtra("id_kajian",marker.getTitle().toString());
                 startActivity(i);
@@ -155,6 +156,37 @@ public class MainUserActivity extends AppCompatActivity implements OnMapReadyCal
 //
 //                    Log.i("-nya",id);
 //                }
+=======
+                warnaRAW = marker.getSnippet().toString();
+                String id = marker.getTitle().toString();
+                String loc = marker.getSnippet().toString();
+                String authorRAW = marker.getSnippet().toString();
+
+                String username ="username";
+
+                // yg buat bencana
+                String authorFinal = authorRAW.substring(authorRAW.lastIndexOf("[")+1, authorRAW.indexOf("]"));
+                Log.e("regex", authorFinal);
+
+                if (username.equals(authorFinal)){
+                    Log.e("test","cakep");
+                    Intent i = new Intent(MainUserActivity.this,DetailPublicActivity.class);
+
+                    i.putExtra("loc",loc);
+                    i.putExtra("Value",id);
+                    startActivity(i);
+                    Log.i("-nya",id);
+                }else {
+                    Log.e("test","bosok");
+                    Intent i = new Intent(MainUserActivity.this,MainUserActivity.class);
+
+                    i.putExtra("loc",loc);
+                    i.putExtra("Value",id);
+                    startActivity(i);
+
+                    Log.i("-nya",id);
+                }
+>>>>>>> 36a34312acdeb43c37af31191fb0b192b4a27c35
 
 //                Intent i = new Intent(MapsActivity.this,NewDetailActivity.class);
 ////                i.putExtra("idBencana",id);

@@ -1,20 +1,28 @@
 <?php 
 include("../settings/koneksi.php");
 <<<<<<< HEAD
+<<<<<<< HEAD
 if(isset($_GET["nama_user"]))
 =======
 if(isset($_POST["nama_user"]))
 >>>>>>> Commit - 5 Marker Detail Masih Tidak Bisa
+=======
+if(isset($_POST["nama_user"]))
+>>>>>>> 36a34312acdeb43c37af31191fb0b192b4a27c35
 {
 	class JsonDisplayMarker {
 
 		function getMarkers(){
         //buat koneksinya
 <<<<<<< HEAD
+<<<<<<< HEAD
         $username = $_GET["nama_user"];
 =======
         $username = $_POST["nama_user"];
 >>>>>>> Commit - 5 Marker Detail Masih Tidak Bisa
+=======
+        $username = $_POST["nama_user"];
+>>>>>>> 36a34312acdeb43c37af31191fb0b192b4a27c35
         $aktif = 'aktif';
         $connection = new Connection();
         $conn = $connection->getConnection();
